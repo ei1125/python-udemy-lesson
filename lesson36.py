@@ -18,7 +18,13 @@ if 100 not in y:
 
 is_ok = True
 
-if is_ok == True
-
 if not is_ok:
   print('hello')
+
+# 空かどうかも判定できる
+is_ok = []
+# False, 0, 0.0, '', [], (), {}, set()
+if is_ok:
+  print('OK!')
+else:
+  print('No!')
