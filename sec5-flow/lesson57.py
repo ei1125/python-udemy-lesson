@@ -1,4 +1,6 @@
 # デコレーター
+# 関数を実行する前に処理を追加したい
+
 def print_more(func):
     def wrapper(*args, **kwargs):
         print('func:', func.__name__)
