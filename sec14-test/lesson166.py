@@ -3,6 +3,9 @@
 # $ pip install pytest
 # test_ と assert を書けば良い
 # $ pytest ファイル名 で実行
+# テストがpassしたときもprint出力を表示したい
+# $ pytest -v --capture=no
+
 
 import pytest
 
