@@ -1,10 +1,38 @@
 # Unittest
 
-class Cal(object):
-    def add_num_and_double(self, x, y):
-        if type(x) is not int or type(y) is not int:
-            raise ValueError
-        result = x + y
-        result *= 2
-        return result
+"""
+実行
+$ python3 lesson162.py
+"""
+import unittest
 
+import calculation
+
+release_name = 'lesson'
+
+class CalTest(unittest.TestCase):
+    def setUp(self):
+        print('setup')
+        self.cal = calculation.Cal()
+
+    def tearDown(self):
+        print('clean up')
+        del self.cal
+    
+    # @unittest.skip('skip!')
+    @unittest.skipIf(release_name == 'lesson', 'skip!')
+    def test_add_num_and_double(self):
+        self.assertEqual(
+            self.cal.add_num_and_double(1, 1), 4)
+
+    def test_add_num_and_double_raise(self):
+        """
+        例外処理のテスト
+        """
+        with self.assertRaises(ValueError):
+            self.cal.add_num_and_double('1', '1')
+
+
+
+if __name__ == '__main__':
+    unittest.main()
