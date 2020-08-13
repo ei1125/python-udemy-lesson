@@ -15,13 +15,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 
 """
-unittest化すると実行できない
-そのまま入力だと実行できた
+if __name__ == '__main__':
+    unittest.main()
+を忘れずに
 """
-# driver = webdriver.Chrome()
-# driver.get('https://www.python.org')
-# time.sleep(10)
-# driver.close()
+
 class PythonOrgTest(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
@@ -31,26 +29,27 @@ class PythonOrgTest(unittest.TestCase):
 
     def test_python_org(self):
         self.driver.get('https://www.python.org')
-        time.sleep(10)
-        # self.assertIn('Python', self.driver.title)
+        self.assertIn('Python', self.driver.title)
 
-        # self.driver.find_element_by_link_text('Downloads').click()
+        self.driver.find_element_by_link_text('Downloads').click()
 
-        # element = WebDriverWait(self.driver, 10).until(
-        #     EC.presence_of_element_located(
-        #         (By.CLASS_NAME, 'widget-title')))
-        # self.assertEqual('Lookin for a specific release?', element.text)
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(
+                (By.CLASS_NAME, 'widget-title')))
+        self.assertEqual('Active Python Releases', element.text)
 
-        # self.driver.find_element_by_link_text('Documentation').click()
+        self.driver.find_element_by_link_text('Documentation').click()
 
-        # element = WebDriverWait(self.driver, 10).until(
-        #     EC.presence_of_element_located(
-        #         (By.CLASS_NAME, 'call-to-action')))
-        # self.assertIn('Browse the docs', element.text)
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(
+                (By.CLASS_NAME, 'call-to-action')))
+        self.assertIn('Browse the docs', element.text)
 
-        # element = self.driver.find_element_by_name('q')
-        # element.clear()
-        # element.send_keys('pycon')
-        # element.send_keys(Keys.RETURN)
-        # assert 'No results found' not in self.driver.page_source
+        element = self.driver.find_element_by_name('q')
+        element.clear()
+        element.send_keys('pycon')
+        element.send_keys(Keys.RETURN)
+        assert 'No results found' not in self.driver.page_source
 
+if __name__ == '__main__':
+    unittest.main()
